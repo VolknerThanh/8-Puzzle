@@ -95,19 +95,19 @@ namespace Puzzle
             public int[,] MT_dich { get { return matrandich; } set { matrandich = value; } }
             public void SetUp()
             {
-                int so = 0;
-                n = PuzzleMap.n;
+                int so = 0;       // dùng để chạy số từ 0 -> n * n - 1
+                n = PuzzleMap.n;  // lấy số bậc của puzzle k
                 matrandich = new int[n, n];
                 for(int i = 0; i < n; i++)
                 {
                     for(int j = 0; j < n;j++)
                     {
-                        if (i == 2 && j == 2)
-                            matrandich[i, j] = 0;
+                        if (i == 2 && j == 2)      // phần tử cuối của ma trận 
+                            matrandich[i, j] = 0;   // cho bằng 0 tức là khoảng trống
                         else
                         {
                             so++;
-                            matrandich[i, j] = so;
+                            matrandich[i, j] = so;  // tạo phần tử 
                         }
                     }
                 }
@@ -122,17 +122,17 @@ namespace Puzzle
                     Console.WriteLine();
                 }
             }
-            public void FindPosition(int x)
+            public void FindPosition(int x)        // hàm này dùng để tìm vị trí của phần tử trong ma trận k ở ma trận đích
             {
                 for(int i = 0; i < n; i++)
                 {
                     for(int j =0; j <n; j++)
                     {
-                        if(matrandich[i,j] == x)
+                        if(matrandich[i,j] == x)      // nếu phần tử nào trong ma trận đích có giá trị giống phần tử này
                         {
-                            vtx = i;
+                            vtx = i;             // lưu lại vị trí
                             vty = j;
-                            return;
+                            return;         // nếu tìm ra rồi thì thoát hàm luôn, khỏi chạy tốn công
                         }
                     }
                 }
@@ -141,16 +141,16 @@ namespace Puzzle
         public void CalculateF()
         {
             Vitri vt = new Vitri();
-            vt.SetUp();
+            vt.SetUp();               // khỏi tạo ma trận đích
             vt.Output();
             for (int i = 0; i < n; i++)
             {
                 for(int j = 0;j < n; j++)
                 {
-                    if(matran[i,j] != 0)
+                    if(matran[i,j] != 0)       // loại bỏ trường hợp f cộng luôn cái khoảng trống
                     {
                         vt.FindPosition(matran[i, j]);
-                        f += Math.Abs(i - vt.vtx) + Math.Abs(j - vt.vty);
+                        f += Math.Abs(i - vt.vtx) + Math.Abs(j - vt.vty);       // tính f theo công thức
                     }
                 }
             }
