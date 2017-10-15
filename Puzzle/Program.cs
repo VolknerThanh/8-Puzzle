@@ -14,6 +14,15 @@ namespace Puzzle
             map.Input();
             map.Output();
             map.CalculateF();
+            PuzzlList list = new PuzzlList();
+            list.CheckAndStorePosition(map);
+            Console.WriteLine();
+            //list.Output();
+
+            /*
+            list.Copy1(map);
+            list.test(map);
+            */
         }
     }
 }
